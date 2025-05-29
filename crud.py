@@ -16,7 +16,7 @@ def crear_sensor(sensor_id: str, campo: str, valor: float, tipo: str = "Sensor")
     Ejemplo de campo: 'valor', 'temperatura', 'humedad', etc.
     """
     entidad = {
-        "id": f"urn:ngsi-ld:Sensor:{sensor_id}",
+        "id": f"{sensor_id}",
         "type": tipo,
         campo: {
             "type": "Float",
@@ -39,7 +39,7 @@ def subscribir_sensor(sensor_id: str):
     """
     Crea una suscripción en Orion para un sensor existente.
     """
-    urn_id = f"urn:ngsi-ld:Sensor:{sensor_id}"
+    urn_id = f"{sensor_id}"
     suscripcion = {
         "description": f"Suscripción para {sensor_id}",
         "subject": {
@@ -74,7 +74,7 @@ def eliminar_sensor(sensor_id: str):
     """
     Elimina una entidad de sensor en Orion v2.
     """
-    urn_id = f"urn:ngsi-ld:Sensor:{sensor_id}"
+    urn_id = f"{sensor_id}"
     try:
         response = requests.delete(f"{ORION_URL}/entities/{urn_id}")
         if response.status_code == 204:
